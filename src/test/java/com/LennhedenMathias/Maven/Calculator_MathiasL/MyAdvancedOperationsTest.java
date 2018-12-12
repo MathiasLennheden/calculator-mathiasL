@@ -47,7 +47,7 @@ public class MyAdvancedOperationsTest {
 			random1 = ran.nextInt(100);
 			förväntat = random1*random1;
 			LOG.info("Testar metoden upphöjtTill2: " + random1 +  " = " + förväntat);
-			assertEquals(advanced.upphöjtTill2(random1, random1), förväntat, 0);
+			assertEquals(advanced.upphojtTill2(random1, random1), förväntat, 0);
 		}
 }
 	
@@ -58,7 +58,7 @@ public class MyAdvancedOperationsTest {
 			random1 = ran.nextInt(20);
 			förväntat = random1*random1*random1;
 			LOG.info("Testar metoden upphöjtTill3: " + random1 +  " = " + förväntat);
-			assertEquals(advanced.upphöjtTill3(random1, random1), förväntat, 0);
+			assertEquals(advanced.upphojtTill3(random1, random1), förväntat, 0);
 		}
 }
 	
@@ -70,7 +70,7 @@ public class MyAdvancedOperationsTest {
 			random2 = ran.nextInt(10);
 			förväntat = Math.pow(random1, random2);
 			LOG.info("Testar metoden xUpphöjtMedX: " + random1 + " ^ " + "random2" + " = " + förväntat);
-			assertEquals(advanced.xUpphöjtMedX(random1, random2), förväntat, 0);
+			assertEquals(advanced.xUpphojtMedX(random1, random2), förväntat, 0);
 		}
 }
 	

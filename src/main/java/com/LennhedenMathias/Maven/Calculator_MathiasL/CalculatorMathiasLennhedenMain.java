@@ -16,23 +16,23 @@ import javax.swing.SwingConstants;
 public class CalculatorMathiasLennhedenMain extends Exception implements CalculatorAdvancedOperationsInterface, CalculatorBasicOperationsInterface  {
 
 	private JFrame frmMathiasKalkylator;
-	private JTextField textFält;
+	private JTextField textFalt;
 
 	//skapa variabler
-	double siffra1;  //första inmatade tal
+	double siffra1;  //forsta inmatade tal
 	double siffra2;  //andra inmatade tal
 	double senasteSiffra = 0; 
-	double föregåendeSiffra = 0;  //siffran som är inmatad innan senasteSiffra
+	double foregaendeSiffra = 0;  //siffran som ar inmatad innan senasteSiffra
 	double resultat;
-	
-	String senasteRäknesätt; 	// t.ex. 4 + 3 - 9. Senaste räknesätt är - (minus)
-	String föregåendeRäknesätt;    // t.ex. 4 + 3 - 9. Föregående räknesätt är alltså + (plus)
-	double summa = 0;
-	String inmatatTal;  //String för det som ska skrivas i textfältet beroende på vilket nummer som anges
+
+	String senasteRaknesatt; 	// t.ex. 4 + 3 - 9. Senaste raknesatt ar - (minus)
+	String foregaendeRaknesatt;    // t.ex. 4 + 3 - 9. Foregaende raknesatt ar alltsa + (plus)
+	double summa = 0;       
+	String inmatatTal;  //String for det som ska skrivas i textfaltet beroende pa vilket nummer som anges
 
 
 	/**
-	 * Kör miniräknar-programmet
+	 * Kor miniraknar-programmet
 	 * @author Mathias Lenneheden
 	 */
 	public static void main(String[] args) {
@@ -49,14 +49,14 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	}
 
 	/**
-	 * Anropa initialize-metoden för att skapa miniräknaren
+	 * Anropa initialize-metoden for att skapa miniraknaren
 	 */
 	public CalculatorMathiasLennhedenMain() {
 		initialize();
 	}
 
 	/**
-	 * Allt innehåll för miniräknaren när det gäller det grafiska. GUI
+	 * Har gors allt GUI fran knappar till funktionerna for knapparna
 	 */
 	private void initialize() {
 		frmMathiasKalkylator = new JFrame();
@@ -66,12 +66,12 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		frmMathiasKalkylator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMathiasKalkylator.getContentPane().setLayout(null);
 
-		textFält = new JTextField();
-		textFält.setHorizontalAlignment(SwingConstants.RIGHT);
-		textFält.setBounds(12, 13, 353, 39);
-		textFält.setFont(new Font("Tahoma", Font.BOLD, 24));  //sätter storleken på texten som skrivs i textfältet
-		frmMathiasKalkylator.getContentPane().add(textFält);
-		textFält.setColumns(10);
+		textFalt = new JTextField();
+		textFalt.setHorizontalAlignment(SwingConstants.RIGHT);
+		textFalt.setBounds(12, 13, 353, 39);
+		textFalt.setFont(new Font("Tahoma", Font.BOLD, 24));  //satter storleken pa texten som skrivs i textfaltet
+		frmMathiasKalkylator.getContentPane().add(textFalt);
+		textFalt.setColumns(10);
 
 		//*************************************************************************************
 		//*  Button 0
@@ -80,13 +80,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button0.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button0.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}			
 			}
 		});
@@ -103,13 +103,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button1.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button1.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -125,13 +125,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button2.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button2.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -147,13 +147,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button3.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button3.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -169,13 +169,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button4.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button4.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -190,13 +190,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button5.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button5.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -211,13 +211,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button6.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button6.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -232,13 +232,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button7.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button7.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -253,13 +253,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button8.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button8.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -274,13 +274,13 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + button9.getText();
-				textFält.setText(inmatatTal );
-				föregåendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
+				inmatatTal = textFalt.getText() + button9.getText();
+				textFalt.setText(inmatatTal );
+				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal
 				try {
-					senasteSiffra = Double.parseDouble(textFält.getText());
+					senasteSiffra = Double.parseDouble(textFalt.getText());
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 			}
 		});
@@ -289,19 +289,19 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		frmMathiasKalkylator.getContentPane().add(button9);
 
 		//*************************************************************************************
-		//*  Räknesätt +
+		//*  Raknesatt +
 		//*************************************************************************************
 		JButton buttonPlus = new JButton("+");
 		buttonPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				beräkning();
-				if (!textFält.getText().equalsIgnoreCase("Syntax Error")) {
-					textFält.setText("");
+
+				berakning();
+				if (!textFalt.getText().equalsIgnoreCase("Syntax Error")) {
+					textFalt.setText("");
 				}
 
-				senasteRäknesätt = "+";
-				föregåendeRäknesätt = "+";
+				senasteRaknesatt = "+";
+				foregaendeRaknesatt = "+";
 			}
 		});
 		buttonPlus.setBackground(Color.ORANGE);
@@ -310,19 +310,19 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		frmMathiasKalkylator.getContentPane().add(buttonPlus);
 
 		//*************************************************************************************
-		//*  Räknesätt -
+		//*  Raknesatt -
 		//*************************************************************************************
 		JButton buttonMinus = new JButton("-");
 		buttonMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				beräkning();
-				if (!textFält.getText().equalsIgnoreCase("Syntax Error")) {
-					textFält.setText("");
+				berakning();
+				if (!textFalt.getText().equalsIgnoreCase("Syntax Error")) {
+					textFalt.setText("");
 				}
 
-				senasteRäknesätt = "-";
-				föregåendeRäknesätt = "-";
+				senasteRaknesatt = "-";
+				foregaendeRaknesatt = "-";
 			}
 		});
 		buttonMinus.setBackground(Color.ORANGE);
@@ -331,40 +331,40 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		frmMathiasKalkylator.getContentPane().add(buttonMinus);
 
 		//*************************************************************************************
-		//*  Räknesätt *
+		//*  Raknesatt *
 		//*************************************************************************************
-		JButton buttonGånger = new JButton("*");
-		buttonGånger.addActionListener(new ActionListener() {
+		JButton buttonGanger = new JButton("*");
+		buttonGanger.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				beräkning();
-				if (!textFält.getText().equalsIgnoreCase("Syntax Error")) {
-					textFält.setText("");
+				berakning();
+				if (!textFalt.getText().equalsIgnoreCase("Syntax Error")) {
+					textFalt.setText("");
 				}
 
-				senasteRäknesätt = "*";
-				föregåendeRäknesätt = "*";
+				senasteRaknesatt = "*";
+				foregaendeRaknesatt = "*";
 			}
 		});
-		buttonGånger.setBackground(Color.ORANGE);
-		buttonGånger.setFont(new Font("Tahoma", Font.BOLD, 18));
-		buttonGånger.setBounds(226, 259, 60, 50);
-		frmMathiasKalkylator.getContentPane().add(buttonGånger);
+		buttonGanger.setBackground(Color.ORANGE);
+		buttonGanger.setFont(new Font("Tahoma", Font.BOLD, 18));
+		buttonGanger.setBounds(226, 259, 60, 50);
+		frmMathiasKalkylator.getContentPane().add(buttonGanger);
 
 		//*************************************************************************************
-		//*  Räknesätt /
+		//*  Raknesatt /
 		//*************************************************************************************
 		JButton buttonDelat = new JButton("/");
 		buttonDelat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				beräkning();
-				if (!textFält.getText().equalsIgnoreCase("Syntax Error")) {
-					textFält.setText("");
+				berakning();
+				if (!textFalt.getText().equalsIgnoreCase("Syntax Error")) {
+					textFalt.setText("");
 				}
 
-				senasteRäknesätt = "/";
-				föregåendeRäknesätt = "/";
+				senasteRaknesatt = "/";
+				foregaendeRaknesatt = "/";
 			}
 		});
 		buttonDelat.setBackground(Color.ORANGE);
@@ -382,11 +382,11 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 
 				String backspace = null;
 
-				if(textFält.getText().length() > 0){
-					StringBuilder strb = new StringBuilder(textFält.getText());
-					strb.deleteCharAt(textFält.getText().length()-1);
+				if(textFalt.getText().length() > 0){
+					StringBuilder strb = new StringBuilder(textFalt.getText());
+					strb.deleteCharAt(textFalt.getText().length()-1);
 					backspace = strb.toString();
-					textFält.setText(backspace);	
+					textFalt.setText(backspace);	
 				}
 			}
 		});
@@ -402,8 +402,8 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		buttonPunkt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				inmatatTal = textFält.getText() + buttonPunkt.getText();
-				textFält.setText(inmatatTal );
+				inmatatTal = textFalt.getText() + buttonPunkt.getText();
+				textFalt.setText(inmatatTal );
 			}
 		});
 		buttonPunkt.setBackground(Color.ORANGE);
@@ -420,12 +420,12 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 
 				double plusminus;
 				try {
-					plusminus = Double.parseDouble(String.valueOf(textFält.getText()));
+					plusminus = Double.parseDouble(String.valueOf(textFalt.getText()));
 					plusminus = plusminus * (-1);
-					textFält.setText(String.valueOf(plusminus));
+					textFalt.setText(String.valueOf(plusminus));
 					senasteSiffra = plusminus;
 				} catch (NumberFormatException e1) {
-					textFält.setText("Syntax Error");
+					textFalt.setText("Syntax Error");
 				}
 
 			}
@@ -435,7 +435,7 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		buttonPlusMinus.setBounds(154, 322, 60, 50);
 		frmMathiasKalkylator.getContentPane().add(buttonPlusMinus);
 
-		
+
 		//*************************************************************************************
 		//*  Clear
 		//*************************************************************************************
@@ -443,11 +443,11 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		buttonC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				
+
 				summa = 0;
-				textFält.setText(null);
-				senasteRäknesätt = null;
-				föregåendeRäknesätt = null;
+				textFalt.setText(null);
+				senasteRaknesatt = null;
+				foregaendeRaknesatt = null;
 				senasteSiffra = 0;
 			}
 		});
@@ -463,8 +463,8 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		buttonModulus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				textFält.setText("");
-				senasteRäknesätt = "%";
+				textFalt.setText("");
+				senasteRaknesatt = "%";
 			}
 		});
 		buttonModulus.setBackground(Color.ORANGE);
@@ -478,11 +478,11 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		JButton buttonSqrt = new JButton("\u221A");
 		buttonSqrt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
+
 				summa = rotenUr(senasteSiffra);
-				textFält.setText(textFält.getText() + "\u221A");   
-				senasteRäknesätt = "sqrt";
-				föregåendeRäknesätt = "sqrt";
+				textFalt.setText(textFalt.getText() + "\u221A");   
+				senasteRaknesatt = "sqrt";
+				foregaendeRaknesatt = "sqrt";
 			}
 		});
 		buttonSqrt.setBackground(Color.ORANGE);
@@ -491,16 +491,16 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		frmMathiasKalkylator.getContentPane().add(buttonSqrt);
 
 		//*************************************************************************************
-		//*  Upphöjt med 2
+		//*  Upphojt med 2
 		//*************************************************************************************
 		JButton buttonX2 = new JButton("x2");
 		buttonX2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				summa = upphöjtTill2(summa, senasteSiffra);
-				textFält.setText(textFält.getText() + "^2");   
-				senasteRäknesätt = "x2";
-				föregåendeRäknesätt = "x2";
+				summa = upphojtTill2(summa, senasteSiffra);
+				textFalt.setText(textFalt.getText() + "^2");   
+				senasteRaknesatt = "x2";
+				foregaendeRaknesatt = "x2";
 
 
 			}
@@ -511,16 +511,16 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		frmMathiasKalkylator.getContentPane().add(buttonX2);
 
 		//*************************************************************************************
-		//*  Upphöjt med 3
+		//*  Upphojt med 3
 		//*************************************************************************************
 		JButton buttonX3 = new JButton("x3");
 		buttonX3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				summa = upphöjtTill3(summa, senasteSiffra);
-				//textFält.setText("");
-				textFält.setText(textFält.getText() + "^3");
-				senasteRäknesätt = "x3";
-				föregåendeRäknesätt = "x3";
+				summa = upphojtTill3(summa, senasteSiffra);
+				//textFalt.setText("");
+				textFalt.setText(textFalt.getText() + "^3");
+				senasteRaknesatt = "x3";
+				foregaendeRaknesatt = "x3";
 			}
 		});
 		buttonX3.setBackground(Color.ORANGE);
@@ -535,7 +535,7 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		button1delatMedX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				summa = ettDelatMedX(summa, senasteSiffra);
-				textFält.setText("");
+				textFalt.setText("");
 			}
 		});
 		button1delatMedX.setBackground(Color.ORANGE);
@@ -544,106 +544,106 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 		frmMathiasKalkylator.getContentPane().add(button1delatMedX);
 
 		//*************************************************************************************
-		//*  X upphöjt med x
+		//*  X upphojt med x
 		//*************************************************************************************
 		JButton buttonXx = new JButton("X^x");
 		buttonXx.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				textFält.setText("");
-				senasteRäknesätt = "X^x";
+				textFalt.setText("");
+				senasteRaknesatt = "X^x";
 			}
 		});
 		buttonXx.setBackground(Color.ORANGE);
 		buttonXx.setFont(new Font("Tahoma", Font.PLAIN, 17));		
 		buttonXx.setBounds(298, 322, 65, 50);
 		frmMathiasKalkylator.getContentPane().add(buttonXx);
-		
-		
+
+
 		//*************************************************************************************
 		//*  Likamed =
 		//*************************************************************************************
-				JButton buttonSumma = new JButton("=");
-				buttonSumma.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+		JButton buttonSumma = new JButton("=");
+		buttonSumma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-						String slutsumma;
-			
-						try {
-							if (föregåendeRäknesätt == "+"){ 
-								if (senasteRäknesätt == "%") {
-									summa = modulus(föregåendeSiffra, senasteSiffra);
-								}
-								else if (senasteRäknesätt == "X^x") {
-									summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
-								}
-								else {							 
-									summa = addition(summa, Double.parseDouble(textFält.getText()));
-								}						
-							}
-							else if (föregåendeRäknesätt == "-"){
-								if (senasteRäknesätt == "%") {
-									summa = modulus(föregåendeSiffra, senasteSiffra);
-								}
-								else if (senasteRäknesätt == "X^x") {
-									summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
-								}
-								else {
-									summa = subtraktion(summa, Double.parseDouble(textFält.getText()));
-								}
-							} 
-							else if (föregåendeRäknesätt == "*"){
-								if (senasteRäknesätt == "%") {
-									summa = modulus(föregåendeSiffra, senasteSiffra);
-								}
-								else if (senasteRäknesätt == "X^x") {
-									summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
-								}
-								else {
-									summa = multiplikation(summa, Double.parseDouble(textFält.getText()));
-								}
-							} 
-							else if (föregåendeRäknesätt == "/"){
-								if (senasteRäknesätt == "%") {
-									summa = modulus(föregåendeSiffra, senasteSiffra);
-								}
-								else if (senasteRäknesätt == "X^x") {
-									summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
-								}
-								else {
-									summa = division(summa, Double.parseDouble(textFält.getText()));
-								}
-							} 
+				String slutsumma;
 
-							// Om senaste räknesättet är % eller X^x, och ingenting finns i föregående räknesätt
-							// behöver vi göra beräkningen av % och X^x här.
-							if (föregåendeRäknesätt == null) {
-								if (senasteRäknesätt=="%") {
-									summa = modulus(föregåendeSiffra, senasteSiffra);
-								}
-								else if (senasteRäknesätt == "X^x") {
-									summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
-								}
-							}
-
-
-							slutsumma = String.format(Locale.US, "%.2f", summa);
-							textFält.setText(slutsumma);
-							senasteRäknesätt = "=";
-						} catch (Exception e1) {
-							textFält.setText("Syntax Error");
-
-						}									
+				try {
+					if (foregaendeRaknesatt == "+"){ 
+						if (senasteRaknesatt == "%") {
+							summa = modulus(foregaendeSiffra, senasteSiffra);
+						}
+						else if (senasteRaknesatt == "X^x") {
+							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
+						}
+						else {							 
+							summa = addition(summa, Double.parseDouble(textFalt.getText()));
+						}						
 					}
-				});
-				buttonSumma.setBackground(Color.GREEN);
-				buttonSumma.setFont(new Font("Tahoma", Font.BOLD, 18));
-				buttonSumma.setBounds(226, 322, 60, 50);
-				frmMathiasKalkylator.getContentPane().add(buttonSumma);	
+					else if (foregaendeRaknesatt == "-"){
+						if (senasteRaknesatt == "%") {
+							summa = modulus(foregaendeSiffra, senasteSiffra);
+						}
+						else if (senasteRaknesatt == "X^x") {
+							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
+						}
+						else {
+							summa = subtraktion(summa, Double.parseDouble(textFalt.getText()));
+						}
+					} 
+					else if (foregaendeRaknesatt == "*"){
+						if (senasteRaknesatt == "%") {
+							summa = modulus(foregaendeSiffra, senasteSiffra);
+						}
+						else if (senasteRaknesatt == "X^x") {
+							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
+						}
+						else {
+							summa = multiplikation(summa, Double.parseDouble(textFalt.getText()));
+						}
+					} 
+					else if (foregaendeRaknesatt == "/"){
+						if (senasteRaknesatt == "%") {
+							summa = modulus(foregaendeSiffra, senasteSiffra);
+						}
+						else if (senasteRaknesatt == "X^x") {
+							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
+						}
+						else {
+							summa = division(summa, Double.parseDouble(textFalt.getText()));
+						}
+					} 
+
+					// Om senaste raknesattet ar % eller X^x, och ingenting finns i foregaende raknesatt
+					// behover vi gora berakningen av % och X^x har.
+					if (foregaendeRaknesatt == null) {
+						if (senasteRaknesatt=="%") {
+							summa = modulus(foregaendeSiffra, senasteSiffra);
+						}
+						else if (senasteRaknesatt == "X^x") {
+							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
+						}
+					}
+
+
+					slutsumma = String.format(Locale.US, "%.2f", summa);
+					textFalt.setText(slutsumma);
+					senasteRaknesatt = "=";
+				} catch (Exception e1) {
+					textFalt.setText("Syntax Error");
+
+				}									
+			}
+		});
+		buttonSumma.setBackground(Color.GREEN);
+		buttonSumma.setFont(new Font("Tahoma", Font.BOLD, 18));
+		buttonSumma.setBounds(226, 322, 60, 50);
+		frmMathiasKalkylator.getContentPane().add(buttonSumma);	
 	}
 
 	/**
-	 * Metoden adderar två tal   t.ex 3 + 4
+	 * Metoden adderar tva tal   t.ex 3 + 4
 	 * @param double summa
 	 * @param double siffra2
 	 * @return double resultat
@@ -658,7 +658,7 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	}
 
 	/**
-	 * Metoden subtraherar två tal  t.ex 3 - 4
+	 * Metoden subtraherar tva tal  t.ex 3 - 4
 	 * 
 	 * @param double summa
 	 * @param double siffra2
@@ -674,7 +674,7 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	}
 
 	/**
-	 * Metoden multiplicerar två tal t.ex 3 * 4 
+	 * Metoden multiplicerar tva tal t.ex 3 * 4 
 	 * 
 	 * @param double summa
 	 * @param double siffra2
@@ -690,7 +690,7 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	}
 
 	/**
-	 * Metoden dividerar två tal  t.ex 9 / 2
+	 * Metoden dividerar tva tal  t.ex 9 / 2
 	 * 
 	 * @param double summa
 	 * @param double siffra2
@@ -706,7 +706,7 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	}
 
 	/**
-	 * Metoden använder modulus och skriver ut "rest" som blir kvar
+	 * Metoden anvander modulus och skriver ut "rest" som blir kvar t.ex. 7 % 4 = 3 (3 blir da resten)
 	 * @param double siffra1
 	 * @param double siffra2
 	 * @return double resultat
@@ -716,28 +716,28 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	//*  Modulus
 	//*************************************************************************************
 	public double modulus(double siffra1,double siffra2) {
-		
-		if (föregåendeRäknesätt == "+") {
+
+		if (foregaendeRaknesatt == "+") {
 			resultat = summa + (siffra1 % siffra2);
 		}
-		else if (föregåendeRäknesätt == "-") {
+		else if (foregaendeRaknesatt == "-") {
 			resultat = summa - (siffra1 % siffra2);
 		}
-		else if (föregåendeRäknesätt == "*") {
+		else if (foregaendeRaknesatt == "*") {
 			resultat = summa * (siffra1 % siffra2);
 		}
-		else if (föregåendeRäknesätt == "/") {
+		else if (foregaendeRaknesatt == "/") {
 			resultat = summa / (siffra1 % siffra2);
 		}
 		else {
 			resultat = siffra1 % siffra2;
 		}
-		föregåendeRäknesätt = "%";
+		foregaendeRaknesatt = "%";
 		return resultat;
 	}
-	
+
 	/**
-	 * Metoden beräknar squareRoot(roten ur) av ett tal
+	 * Metoden beraknar squareRoot(roten ur) av ett tal
 	 * @param double senasteSiffra
 	 * @return double resultat 
 	 */
@@ -746,29 +746,29 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	//*  Roten ur / SquareRoot
 	//*************************************************************************************
 	public double rotenUr(double senasteSiffra) {
-	
-		if (föregåendeRäknesätt == "+") {
+
+		if (foregaendeRaknesatt == "+") {
 			resultat = summa + Math.sqrt(senasteSiffra);
 		}
-		else if (föregåendeRäknesätt == "-") {
+		else if (foregaendeRaknesatt == "-") {
 			resultat = summa - Math.sqrt(senasteSiffra);
 		}
-		else if (föregåendeRäknesätt == "*") {
+		else if (foregaendeRaknesatt == "*") {
 			resultat = summa * Math.sqrt(senasteSiffra);
 		}
-		else if (föregåendeRäknesätt == "/") {
+		else if (foregaendeRaknesatt == "/") {
 			resultat = summa / Math.sqrt(senasteSiffra);
 		}
 		else {
 			resultat = Math.sqrt(senasteSiffra);
 		}
-		föregåendeRäknesätt = "sqrt";
+		foregaendeRaknesatt = "sqrt";
 		return resultat;
 	}
-	
+
 	/**
-	 * Metoden får in ett tal och multiplicerar talet med sig självt 1 gång. t.ex. (inmatat tal) = 9 
-	 * då får man tillbaka 9 * 9,  alltså multiplicerat med sig själv 1 gång
+	 * Metoden far in ett tal och multiplicerar talet med sig sjalvt 1 gang. t.ex. (inmatat tal) = 9 
+	 * da far man tillbaka 9 * 9,  alltsa multiplicerat med sig sjalv 1 gang
 	 * 
 	 * @param double summa
 	 * @param double senasteSiffra
@@ -776,31 +776,31 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	 */
 	@Override
 	//*************************************************************************************
-	//*  x upphöjt i 2 || x^2
+	//*  x upphojt i 2 || x^2
 	//*************************************************************************************
-	public double upphöjtTill2(double summa, double senasteSiffra) {
-		if (föregåendeRäknesätt == "+") {
+	public double upphojtTill2(double summa, double senasteSiffra) {
+		if (foregaendeRaknesatt == "+") {
 			resultat = summa + (senasteSiffra*senasteSiffra);                   
 		}
-		else if (föregåendeRäknesätt == "-") {
+		else if (foregaendeRaknesatt == "-") {
 			resultat = summa  - (senasteSiffra*senasteSiffra);
 		}
-		else if (föregåendeRäknesätt == "*") {
+		else if (foregaendeRaknesatt == "*") {
 			resultat = summa * (senasteSiffra*senasteSiffra);
 		}
-		else if (föregåendeRäknesätt == "/") {
+		else if (foregaendeRaknesatt == "/") {
 			resultat = summa / (senasteSiffra*senasteSiffra);
 		}
 		else {
 			resultat = senasteSiffra*senasteSiffra;
 		}
-		föregåendeRäknesätt = "x2";                                               
+		foregaendeRaknesatt = "x2";                                               
 		return resultat;
 	}
-	
+
 	/**
-	 * Metoden får in ett tal och multiplicerar talet med sig självt 2 gånger. t.ex. (inmatat tal) = 9 
-	 * då får man tillbaka 9 * 9 * 9,  alltså multiplicerat med sig själv 2 gånger
+	 * Metoden far in ett tal och multiplicerar talet med sig sjalvt 2 ganger. t.ex. (inmatat tal) = 9 
+	 * da far man tillbaka 9 * 9 * 9,  alltsa multiplicerat med sig sjalv 2 ganger
 	 * 
 	 * @param double summa
 	 * @param double senasteSiffra
@@ -808,30 +808,30 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	 */
 	@Override
 	//*************************************************************************************
-	//*   x upphöjt i 3 || x^3
+	//*   x upphojt i 3 || x^3
 	//*************************************************************************************
-	public double upphöjtTill3(double summa, double senasteSiffra) {
-		if (föregåendeRäknesätt == "+") {
+	public double upphojtTill3(double summa, double senasteSiffra) {
+		if (foregaendeRaknesatt == "+") {
 			resultat = summa + (senasteSiffra*senasteSiffra*senasteSiffra);
 		}
-		else if (föregåendeRäknesätt == "-") {
+		else if (foregaendeRaknesatt == "-") {
 			resultat = summa - (senasteSiffra*senasteSiffra*senasteSiffra);
 		}
-		else if (föregåendeRäknesätt == "*") {
+		else if (foregaendeRaknesatt == "*") {
 			resultat = summa * (senasteSiffra*senasteSiffra*senasteSiffra);
 		}
-		else if (föregåendeRäknesätt == "/") {
+		else if (foregaendeRaknesatt == "/") {
 			resultat = summa / (senasteSiffra*senasteSiffra*senasteSiffra);
 		}
 		else {
 			resultat = senasteSiffra*senasteSiffra*senasteSiffra;
 		}
-		föregåendeRäknesätt = "x2";
+		foregaendeRaknesatt = "x2";
 		return resultat;
 	}
 
 	/**
-	 * Metoden får in ett tal t.ex. 5 och sedan tar den in andra talet t.ex. 2. Då får vi 5^2
+	 * Metoden far in ett tal t.ex. 5 och sedan tar den in andra talet t.ex. 2. Da far vi 5^2
 	 * 
 	 * @param double siffra1
 	 * @param double siffra2
@@ -840,32 +840,32 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	 */
 	@Override
 	//*************************************************************************************
-	//*   x upphöjt i x || x^x
+	//*   x upphojt i x || x^x
 	//*************************************************************************************
-	public double xUpphöjtMedX(double siffra1, double siffra2) {
-		
-		if (föregåendeRäknesätt == "+") {
+	public double xUpphojtMedX(double siffra1, double siffra2) {
+
+		if (foregaendeRaknesatt == "+") {
 			resultat = summa + (Math.pow(siffra1, siffra2));
 		}
-		else if (föregåendeRäknesätt == "-") {
+		else if (foregaendeRaknesatt == "-") {
 			resultat = summa - (Math.pow(siffra1, siffra2));
 		}
-		else if (föregåendeRäknesätt == "*") {
+		else if (foregaendeRaknesatt == "*") {
 			resultat = summa * (Math.pow(siffra1, siffra2));
 		}
-		else if (föregåendeRäknesätt == "/") {
+		else if (foregaendeRaknesatt == "/") {
 			resultat = summa / (Math.pow(siffra1, siffra2));
 		}
 		else {
 			resultat = Math.pow(siffra1, siffra2);
 		}
-		föregåendeRäknesätt = "X^x";
+		foregaendeRaknesatt = "X^x";
 		return resultat;
 	}
 
 
 	/**
-	 * Metoden tar in ett tal. t.ex 8 och då gör den 1/8 och skriver ut svaret
+	 * Metoden tar in ett tal. t.ex 8 och da gor den 1/8 och skriver ut svaret
 	 * 
 	 * @param double summa
 	 * @param double siffra2
@@ -876,146 +876,148 @@ public class CalculatorMathiasLennhedenMain extends Exception implements Calcula
 	//*  1 / x
 	//*************************************************************************************
 	public double ettDelatMedX(double summa, double siffra2) {
-		
-		if (föregåendeRäknesätt == "+") {
+
+		if (foregaendeRaknesatt == "+") {
 			resultat = summa + (1/(double)siffra2);                    
 		}
-		else if (föregåendeRäknesätt == "-") {
+		else if (foregaendeRaknesatt == "-") {
 			resultat = summa  - (1/(double)siffra2);
 		}
-		else if (föregåendeRäknesätt == "*") {
+		else if (foregaendeRaknesatt == "*") {
 			resultat = summa * (1/(double)siffra2);
 		}
-		else if (föregåendeRäknesätt == "/") {
+		else if (foregaendeRaknesatt == "/") {
 			resultat = summa / (1/(double)siffra2);
 		}
 		else {
 			resultat = 1/(double)siffra2;
 		}
-		föregåendeRäknesätt = "1/x";                                               
+		foregaendeRaknesatt = "1/x";                                               
 		return resultat;
-		}
+	}
 
-	
+
 	/**
-	 * Denna metod innehåller beräkning för de flesta möjliga varianter av uträkningar
+	 * Denna metod innehaller berakning for de flesta mojliga varianter av utrakningar
+	 * Anropas vid +, -, *, / knapparna
+	 * 
 	 */
 	//*************************************************************************************
-	//*   Beräkna metod för alla 
+	//*   Berakna metod for alla 
 	//*************************************************************************************
-	private void beräkning() {
+	private void berakning() {
 		try {
 
-			if (senasteRäknesätt == "=") {
-				textFält.setText("Syntax Error");
+			if (senasteRaknesatt == "=") {
+				textFalt.setText("Syntax Error");
 				return;
 			}
 			// Addition
-			if  (föregåendeRäknesätt == "+") {
-				if (senasteRäknesätt == "%") {
-					summa = modulus(föregåendeSiffra, senasteSiffra);
+			if  (foregaendeRaknesatt == "+") {
+				if (senasteRaknesatt == "%") {
+					summa = modulus(foregaendeSiffra, senasteSiffra);
 				}
-				else if (senasteRäknesätt == "X^x") {
-					summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
+				else if (senasteRaknesatt == "X^x") {
+					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
 				}
 				else{
-					summa = addition(summa, Double.parseDouble(textFält.getText()));
+					summa = addition(summa, Double.parseDouble(textFalt.getText()));
 				}
 
 				// Subtraktion
-			}else if (föregåendeRäknesätt == "-") {
-				if (senasteRäknesätt == "%") {
-					summa = modulus(föregåendeSiffra, senasteSiffra);
+			}else if (foregaendeRaknesatt == "-") {
+				if (senasteRaknesatt == "%") {
+					summa = modulus(foregaendeSiffra, senasteSiffra);
 				}
-				else if (senasteRäknesätt == "X^x") {
-					summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
+				else if (senasteRaknesatt == "X^x") {
+					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
 				}
 				else{
-					summa = subtraktion(summa, Double.parseDouble(textFält.getText()));
+					summa = subtraktion(summa, Double.parseDouble(textFalt.getText()));
 				}
 			}
 
 			// Multiplikation
-			else if (föregåendeRäknesätt == "*") {
-				if (senasteRäknesätt == "%") {
-					summa = modulus(föregåendeSiffra, senasteSiffra);
+			else if (foregaendeRaknesatt == "*") {
+				if (senasteRaknesatt == "%") {
+					summa = modulus(foregaendeSiffra, senasteSiffra);
 				}
-				else if (senasteRäknesätt == "X^x") {
-					summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
+				else if (senasteRaknesatt == "X^x") {
+					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
 				}
 				else{
-					summa = multiplikation(summa, Double.parseDouble(textFält.getText()));
+					summa = multiplikation(summa, Double.parseDouble(textFalt.getText()));
 				}
 			}
 			// Division			
-			else if (föregåendeRäknesätt == "/") {
-				if (senasteRäknesätt == "%") {
-					summa = modulus(föregåendeSiffra, senasteSiffra);
+			else if (foregaendeRaknesatt == "/") {
+				if (senasteRaknesatt == "%") {
+					summa = modulus(foregaendeSiffra, senasteSiffra);
 				}
-				else if (senasteRäknesätt == "X^x") {
-					summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
+				else if (senasteRaknesatt == "X^x") {
+					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
 				}
 				else{
-					summa = division(summa, Double.parseDouble(textFält.getText()));
+					summa = division(summa, Double.parseDouble(textFalt.getText()));
 				}
 			}
 
 			// Modulus	
-			else if (senasteRäknesätt == "%") {
-				summa = modulus(föregåendeSiffra, senasteSiffra);
+			else if (senasteRaknesatt == "%") {
+				summa = modulus(foregaendeSiffra, senasteSiffra);
 			}
 
 			//x2	
-			else if (föregåendeRäknesätt == "x2") {   // X^2 är redan beräknat. Töm fält inför nästa beräkning
-				textFält.setText("");
+			else if (foregaendeRaknesatt == "x2") {   // X^2 ar redan beraknat. Tom falt infor nasta berakning
+				textFalt.setText("");
 			}
 
 			// x3	
-			else if (föregåendeRäknesätt == "x3") {   // X^3 är redan beräknat. Töm fält inför nästa beräkning
-				textFält.setText("");
+			else if (foregaendeRaknesatt == "x3") {   // X^3 ar redan beraknat. Tom falt infor nasta berakning
+				textFalt.setText("");
 
 			}
 
 			// sqrt	
-			else if (föregåendeRäknesätt == "sqrt") { // sqrt är redan beräknat. Töm fält inför nästa beräkning
-				textFält.setText("");     			 
+			else if (foregaendeRaknesatt == "sqrt") { // sqrt ar redan beraknat. Tom falt infor nasta berakning
+				textFalt.setText("");     			 
 
 			}
 
 			// 1/x	
-			else if (föregåendeRäknesätt == "1/x") { // 1/x är redan beräknat. Töm fält inför nästa beräkning
-				textFält.setText("");                 
+			else if (foregaendeRaknesatt == "1/x") { // 1/x ar redan beraknat. Tom falt infor nasta berakning
+				textFalt.setText("");                 
 
 			}
 
 			// X^x	
-			else if (föregåendeRäknesätt == "X^x") {
-				summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
+			else if (foregaendeRaknesatt == "X^x") {
+				summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
 			}
-			
-			// Om senaste räknesättet är % eller X^x, och ingenting finns i föregående räknesätt
-			// behöver vi göra beräkningen av % och X^x här.
-			else if (föregåendeRäknesätt == null) {
-				if (senasteRäknesätt=="%") {
-					summa = modulus(föregåendeSiffra, senasteSiffra);
+
+			// Om senaste raknesattet ar % eller X^x, och ingenting finns i foregaende raknesatt
+			// behover vi gora berakningen av % och X^x har.
+			else if (foregaendeRaknesatt == null) {
+				if (senasteRaknesatt=="%") {
+					summa = modulus(foregaendeSiffra, senasteSiffra);
 				}
-				else if (senasteRäknesätt == "X^x") {
-					summa = xUpphöjtMedX(föregåendeSiffra, senasteSiffra);
+				else if (senasteRaknesatt == "X^x") {
+					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);
 				}else{
-					summa = Double.parseDouble(textFält.getText());
+					summa = Double.parseDouble(textFalt.getText());
 				}
 			}else {
-				summa = Double.parseDouble(textFält.getText());
+				summa = Double.parseDouble(textFalt.getText());
 			}
 
 		} catch (Exception e1) {
 
-			textFält.setText("Syntax Error");
+			textFalt.setText("Syntax Error");
 
-			föregåendeRäknesätt = null;
+			foregaendeRaknesatt = null;
 			summa = 0;
 
 		}
 	}
-	
+
 }

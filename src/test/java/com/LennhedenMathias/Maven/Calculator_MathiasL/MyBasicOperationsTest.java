@@ -22,8 +22,8 @@ public class MyBasicOperationsTest extends TestCase {
 	public void testAddititon() throws Exception {
 
 		for (int i = 0; i < 50; i++) {
-			random1 = ran.nextDouble()*10;
-			random2 = ran.nextDouble()*10;
+			random1 = ran.nextDouble()*100;
+			random2 = ran.nextDouble()*100;
 			förväntat = random1+random2;
 			LOG.info("Testar metoden addition: " + random1 + " + " + random2 + " = " + förväntat);
 			assertEquals(calculator.addition(random1, random2), förväntat, 0);
@@ -34,8 +34,8 @@ public class MyBasicOperationsTest extends TestCase {
 	public void testSubtraktion() throws Exception {
 
 		for (int i = 0; i < 50; i++) {
-			random1 = ran.nextDouble()*10;
-			random2 = ran.nextDouble()*10;
+			random1 = ran.nextDouble()*100;
+			random2 = ran.nextDouble()*100;
 			förväntat = random1-random2;
 			LOG.info("Testar metoden subtraktion: " + random1 + " - " + random2 + " = " + förväntat);
 			assertEquals(calculator.subtraktion(random1, random2), förväntat, 0);
@@ -58,8 +58,8 @@ public class MyBasicOperationsTest extends TestCase {
 	public void testDivision() throws Exception {
 
 		for (int i = 0; i < 50; i++) {
-			random1 = ran.nextDouble()*10;
-			random2 = ran.nextDouble()*10;
+			random1 = ran.nextDouble()*100;
+			random2 = ran.nextDouble()*100;
 			förväntat = random1 / random2;
 			LOG.info("Testar metoden division: " + random1 + " / " + random2 + " = " + förväntat);
 			assertEquals(calculator.division(random1, random2),förväntat, 0);
