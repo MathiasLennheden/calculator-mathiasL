@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="10" passed="10">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Surefire suite" duration-ms="560" started-at="2018-12-12T14:47:03Z" finished-at="2018-12-12T14:47:04Z">
+    <groups>
+    </groups>
+    <test name="Surefire test" duration-ms="560" started-at="2018-12-12T14:47:03Z" finished-at="2018-12-12T14:47:04Z">
+      <class name="com.LennhedenMathias.Maven.Calculator_MathiasL.MyAdvancedOperationsTest">
+        <test-method status="PASS" signature="testUpphöjtTill2()[pri:0, instance:testUpphöjtTill2(com.LennhedenMathias.Maven.Calculator_MathiasL.MyAdvancedOperationsTest)]" name="testUpphöjtTill2" duration-ms="39" started-at="2018-12-12T15:47:03Z" finished-at="2018-12-12T15:47:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpphöjtTill2 -->
+        <test-method status="PASS" signature="testUpphöjtTill3()[pri:0, instance:testUpphöjtTill3(com.LennhedenMathias.Maven.Calculator_MathiasL.MyAdvancedOperationsTest)]" name="testUpphöjtTill3" duration-ms="19" started-at="2018-12-12T15:47:03Z" finished-at="2018-12-12T15:47:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpphöjtTill3 -->
+        <test-method status="PASS" signature="testEttDelatMedX()[pri:0, instance:testEttDelatMedX(com.LennhedenMathias.Maven.Calculator_MathiasL.MyAdvancedOperationsTest)]" name="testEttDelatMedX" duration-ms="16" started-at="2018-12-12T15:47:03Z" finished-at="2018-12-12T15:47:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEttDelatMedX -->
+        <test-method status="PASS" signature="testXUpphöjtMedX()[pri:0, instance:testXUpphöjtMedX(com.LennhedenMathias.Maven.Calculator_MathiasL.MyAdvancedOperationsTest)]" name="testXUpphöjtMedX" duration-ms="12" started-at="2018-12-12T15:47:03Z" finished-at="2018-12-12T15:47:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testXUpphöjtMedX -->
+        <test-method status="PASS" signature="testModulus()[pri:0, instance:testModulus(com.LennhedenMathias.Maven.Calculator_MathiasL.MyAdvancedOperationsTest)]" name="testModulus" duration-ms="15" started-at="2018-12-12T15:47:03Z" finished-at="2018-12-12T15:47:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testModulus -->
+        <test-method status="PASS" signature="testRotenUr()[pri:0, instance:testRotenUr(com.LennhedenMathias.Maven.Calculator_MathiasL.MyAdvancedOperationsTest)]" name="testRotenUr" duration-ms="12" started-at="2018-12-12T15:47:03Z" finished-at="2018-12-12T15:47:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRotenUr -->
+      </class> <!-- com.LennhedenMathias.Maven.Calculator_MathiasL.MyAdvancedOperationsTest -->
+      <class name="com.LennhedenMathias.Maven.Calculator_MathiasL.MyBasicOperationsTest">
+        <test-method status="PASS" signature="testMultiplikation()[pri:0, instance:testMultiplikation(com.LennhedenMathias.Maven.Calculator_MathiasL.MyBasicOperationsTest)]" name="testMultiplikation" duration-ms="22" started-at="2018-12-12T15:47:03Z" finished-at="2018-12-12T15:47:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMultiplikation -->
+        <test-method status="PASS" signature="testDivision()[pri:0, instance:testDivision(com.LennhedenMathias.Maven.Calculator_MathiasL.MyBasicOperationsTest)]" name="testDivision" duration-ms="10" started-at="2018-12-12T15:47:04Z" finished-at="2018-12-12T15:47:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDivision -->
+        <test-method status="PASS" signature="testAddititon()[pri:0, instance:testAddititon(com.LennhedenMathias.Maven.Calculator_MathiasL.MyBasicOperationsTest)]" name="testAddititon" duration-ms="12" started-at="2018-12-12T15:47:04Z" finished-at="2018-12-12T15:47:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddititon -->
+        <test-method status="PASS" signature="testSubtraktion()[pri:0, instance:testSubtraktion(com.LennhedenMathias.Maven.Calculator_MathiasL.MyBasicOperationsTest)]" name="testSubtraktion" duration-ms="16" started-at="2018-12-12T15:47:04Z" finished-at="2018-12-12T15:47:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubtraktion -->
+      </class> <!-- com.LennhedenMathias.Maven.Calculator_MathiasL.MyBasicOperationsTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

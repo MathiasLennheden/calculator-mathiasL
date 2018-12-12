@@ -1,0 +1,28 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},36,6,0,0,5,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},33,6,0,0,5,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},10,6,0,0,3,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},292,6,30,0,36,1,16,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},10,6,0,0,3,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},18,6,0,0,3,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},36,6,0,0,5,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new Runnable() {...},16,0,0,0,7,0,2,0,2,0
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain,503,1112,68,24,78,209,48,12,2,12
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},22,6,0,0,6,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},29,6,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},24,9,0,0,3,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},35,6,2,0,7,1,2,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},45,9,0,0,8,1,1,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},24,6,2,0,6,1,2,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},24,6,2,0,6,1,2,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},24,6,2,0,6,1,2,1,1,1
+Calculator-MathiasL,com.LennhedenMathias.Maven.Calculator_MathiasL,CalculatorMathiasLennhedenMain.new ActionListener() {...},24,6,2,0,6,1,2,1,1,1

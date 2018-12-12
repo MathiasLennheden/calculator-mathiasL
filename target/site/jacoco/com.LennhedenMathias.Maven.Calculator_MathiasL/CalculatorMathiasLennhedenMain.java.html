@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="sv"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CalculatorMathiasLennhedenMain.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Calculator-MathiasL</a> &gt; <a href="index.source.html" class="el_package">com.LennhedenMathias.Maven.Calculator_MathiasL</a> &gt; <span class="el_source">CalculatorMathiasLennhedenMain.java</span></div><h1>CalculatorMathiasLennhedenMain.java</h1><pre class="source lang-java linenums">package com.LennhedenMathias.Maven.Calculator_MathiasL;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Locale;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+//Implementera interface
+public class CalculatorMathiasLennhedenMain extends Exception implements CalculatorAdvancedOperationsInterface, CalculatorBasicOperationsInterface  {
+
+	private JFrame frmMathiasKalkylator;
+	private JTextField textFalt;
+
+	//skapa variabler
+	double siffra1;  //forsta inmatade tal
+	double siffra2;  //andra inmatade tal
+<span class="fc" id="L24">	double senasteSiffra = 0; </span>
+<span class="fc" id="L25">	double foregaendeSiffra = 0;  //siffran som ar inmatad innan senasteSiffra</span>
+	double resultat;
+
+	String senasteRaknesatt; 	// t.ex. 4 + 3 - 9. Senaste raknesatt ar - (minus)
+	String foregaendeRaknesatt;    // t.ex. 4 + 3 - 9. Foregaende raknesatt ar alltsa + (plus)
+<span class="fc" id="L30">	double summa = 0;       </span>
+	String inmatatTal;  //String for det som ska skrivas i textfaltet beroende pa vilket nummer som anges
+
+
+	/**
+	 * Kor miniraknar-programmet
+	 * @author Mathias Lenneheden
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L39">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L42">					CalculatorMathiasLennhedenMain window = new CalculatorMathiasLennhedenMain();</span>
+<span class="nc" id="L43">					window.frmMathiasKalkylator.setVisible(true);</span>
+<span class="nc" id="L44">				} catch (Exception e) {</span>
+<span class="nc" id="L45">					e.printStackTrace();</span>
+<span class="nc" id="L46">				}</span>
+<span class="nc" id="L47">			}</span>
+		});
+<span class="nc" id="L49">	}</span>
+
+	/**
+	 * Anropa initialize-metoden for att skapa miniraknaren
+	 */
+<span class="fc" id="L54">	public CalculatorMathiasLennhedenMain() {</span>
+<span class="fc" id="L55">		initialize();</span>
+<span class="fc" id="L56">	}</span>
+
+	/**
+	 * Har gors allt GUI fran knappar till funktionerna for knapparna
+	 */
+	private void initialize() {
+<span class="fc" id="L62">		frmMathiasKalkylator = new JFrame();</span>
+<span class="fc" id="L63">		frmMathiasKalkylator.setTitle(&quot;Kalkylator a la Mathias L || Kvalit18&quot;);</span>
+<span class="fc" id="L64">		frmMathiasKalkylator.getContentPane().setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L65">		frmMathiasKalkylator.setBounds(100, 100, 430, 481);</span>
+<span class="fc" id="L66">		frmMathiasKalkylator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L67">		frmMathiasKalkylator.getContentPane().setLayout(null);</span>
+
+<span class="fc" id="L69">		textFalt = new JTextField();</span>
+<span class="fc" id="L70">		textFalt.setHorizontalAlignment(SwingConstants.RIGHT);</span>
+<span class="fc" id="L71">		textFalt.setBounds(12, 13, 353, 39);</span>
+<span class="fc" id="L72">		textFalt.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 24));  //satter storleken pa texten som skrivs i textfaltet</span>
+<span class="fc" id="L73">		frmMathiasKalkylator.getContentPane().add(textFalt);</span>
+<span class="fc" id="L74">		textFalt.setColumns(10);</span>
+
+		//*************************************************************************************
+		//*  Button 0
+		//*************************************************************************************
+<span class="fc" id="L79">		JButton button0 = new JButton(&quot;0&quot;);</span>
+<span class="fc" id="L80">		button0.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L83">				inmatatTal = textFalt.getText() + button0.getText();</span>
+<span class="nc" id="L84">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L85">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L87">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L88">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L89">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L90">				}			</span>
+<span class="nc" id="L91">			}</span>
+		});
+
+<span class="fc" id="L94">		button0.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L95">		button0.setBounds(12, 322, 60, 50);</span>
+<span class="fc" id="L96">		frmMathiasKalkylator.getContentPane().add(button0);</span>
+
+
+		//*************************************************************************************
+		//*  Button 1
+		//*************************************************************************************
+<span class="fc" id="L102">		JButton button1 = new JButton(&quot;1&quot;);</span>
+<span class="fc" id="L103">		button1.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L106">				inmatatTal = textFalt.getText() + button1.getText();</span>
+<span class="nc" id="L107">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L108">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L110">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L111">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L112">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L113">				}</span>
+<span class="nc" id="L114">			}</span>
+		});
+<span class="fc" id="L116">		button1.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L117">		button1.setBounds(12, 259, 60, 50);</span>
+<span class="fc" id="L118">		frmMathiasKalkylator.getContentPane().add(button1);</span>
+
+
+		//*************************************************************************************
+		//*  Button 2
+		//*************************************************************************************
+<span class="fc" id="L124">		JButton button2 = new JButton(&quot;2&quot;);</span>
+<span class="fc" id="L125">		button2.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L128">				inmatatTal = textFalt.getText() + button2.getText();</span>
+<span class="nc" id="L129">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L130">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L132">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L133">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L134">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L135">				}</span>
+<span class="nc" id="L136">			}</span>
+		});
+<span class="fc" id="L138">		button2.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L139">		button2.setBounds(82, 259, 60, 50);</span>
+<span class="fc" id="L140">		frmMathiasKalkylator.getContentPane().add(button2);</span>
+
+
+		//*************************************************************************************
+		//*  Button 3
+		//*************************************************************************************
+<span class="fc" id="L146">		JButton button3 = new JButton(&quot;3&quot;);</span>
+<span class="fc" id="L147">		button3.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L150">				inmatatTal = textFalt.getText() + button3.getText();</span>
+<span class="nc" id="L151">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L152">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L154">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L155">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L156">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L157">				}</span>
+<span class="nc" id="L158">			}</span>
+		});
+<span class="fc" id="L160">		button3.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L161">		button3.setBounds(154, 259, 60, 50);</span>
+<span class="fc" id="L162">		frmMathiasKalkylator.getContentPane().add(button3);</span>
+
+
+		//*************************************************************************************
+		//*  Button 4
+		//*************************************************************************************
+<span class="fc" id="L168">		JButton button4 = new JButton(&quot;4&quot;);</span>
+<span class="fc" id="L169">		button4.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L172">				inmatatTal = textFalt.getText() + button4.getText();</span>
+<span class="nc" id="L173">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L174">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L176">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L177">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L178">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L179">				}</span>
+<span class="nc" id="L180">			}</span>
+		});
+<span class="fc" id="L182">		button4.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L183">		button4.setBounds(12, 196, 60, 50);</span>
+<span class="fc" id="L184">		frmMathiasKalkylator.getContentPane().add(button4);</span>
+
+		//*************************************************************************************
+		//*  Button 5
+		//*************************************************************************************
+<span class="fc" id="L189">		JButton button5 = new JButton(&quot;5&quot;);</span>
+<span class="fc" id="L190">		button5.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L193">				inmatatTal = textFalt.getText() + button5.getText();</span>
+<span class="nc" id="L194">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L195">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L197">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L198">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L199">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L200">				}</span>
+<span class="nc" id="L201">			}</span>
+		});
+<span class="fc" id="L203">		button5.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L204">		button5.setBounds(84, 196, 60, 50);</span>
+<span class="fc" id="L205">		frmMathiasKalkylator.getContentPane().add(button5);</span>
+
+		//*************************************************************************************
+		//*  Button 6
+		//*************************************************************************************
+<span class="fc" id="L210">		JButton button6 = new JButton(&quot;6&quot;);</span>
+<span class="fc" id="L211">		button6.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L214">				inmatatTal = textFalt.getText() + button6.getText();</span>
+<span class="nc" id="L215">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L216">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L218">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L219">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L220">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L221">				}</span>
+<span class="nc" id="L222">			}</span>
+		});
+<span class="fc" id="L224">		button6.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L225">		button6.setBounds(157, 196, 60, 50);</span>
+<span class="fc" id="L226">		frmMathiasKalkylator.getContentPane().add(button6);</span>
+
+		//*************************************************************************************
+		//*  Button 7
+		//*************************************************************************************
+<span class="fc" id="L231">		JButton button7 = new JButton(&quot;7&quot;);</span>
+<span class="fc" id="L232">		button7.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L235">				inmatatTal = textFalt.getText() + button7.getText();</span>
+<span class="nc" id="L236">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L237">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L239">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L240">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L241">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L242">				}</span>
+<span class="nc" id="L243">			}</span>
+		});
+<span class="fc" id="L245">		button7.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L246">		button7.setBounds(12, 133, 60, 50);</span>
+<span class="fc" id="L247">		frmMathiasKalkylator.getContentPane().add(button7);</span>
+
+		//*************************************************************************************
+		//*  Button 8
+		//*************************************************************************************
+<span class="fc" id="L252">		JButton button8 = new JButton(&quot;8&quot;);</span>
+<span class="fc" id="L253">		button8.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L256">				inmatatTal = textFalt.getText() + button8.getText();</span>
+<span class="nc" id="L257">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L258">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L260">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L261">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L262">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L263">				}</span>
+<span class="nc" id="L264">			}</span>
+		});
+<span class="fc" id="L266">		button8.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L267">		button8.setBounds(85, 133, 60, 50);</span>
+<span class="fc" id="L268">		frmMathiasKalkylator.getContentPane().add(button8);</span>
+
+		//*************************************************************************************
+		//*  Button 9
+		//*************************************************************************************
+<span class="fc" id="L273">		JButton button9 = new JButton(&quot;9&quot;);</span>
+<span class="fc" id="L274">		button9.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L277">				inmatatTal = textFalt.getText() + button9.getText();</span>
+<span class="nc" id="L278">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L279">				foregaendeSiffra = senasteSiffra;  //spara undan tidigare inmatat tal</span>
+				try {
+<span class="nc" id="L281">					senasteSiffra = Double.parseDouble(textFalt.getText());</span>
+<span class="nc" id="L282">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L283">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L284">				}</span>
+<span class="nc" id="L285">			}</span>
+		});
+<span class="fc" id="L287">		button9.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L288">		button9.setBounds(157, 133, 60, 50);</span>
+<span class="fc" id="L289">		frmMathiasKalkylator.getContentPane().add(button9);</span>
+
+		//*************************************************************************************
+		//*  Raknesatt +
+		//*************************************************************************************
+<span class="fc" id="L294">		JButton buttonPlus = new JButton(&quot;+&quot;);</span>
+<span class="fc" id="L295">		buttonPlus.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L298">				berakning();</span>
+<span class="nc bnc" id="L299" title="All 2 branches missed.">				if (!textFalt.getText().equalsIgnoreCase(&quot;Syntax Error&quot;)) {</span>
+<span class="nc" id="L300">					textFalt.setText(&quot;&quot;);</span>
+				}
+
+<span class="nc" id="L303">				senasteRaknesatt = &quot;+&quot;;</span>
+<span class="nc" id="L304">				foregaendeRaknesatt = &quot;+&quot;;</span>
+<span class="nc" id="L305">			}</span>
+		});
+<span class="fc" id="L307">		buttonPlus.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L308">		buttonPlus.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L309">		buttonPlus.setBounds(229, 133, 60, 50);</span>
+<span class="fc" id="L310">		frmMathiasKalkylator.getContentPane().add(buttonPlus);</span>
+
+		//*************************************************************************************
+		//*  Raknesatt -
+		//*************************************************************************************
+<span class="fc" id="L315">		JButton buttonMinus = new JButton(&quot;-&quot;);</span>
+<span class="fc" id="L316">		buttonMinus.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L319">				berakning();</span>
+<span class="nc bnc" id="L320" title="All 2 branches missed.">				if (!textFalt.getText().equalsIgnoreCase(&quot;Syntax Error&quot;)) {</span>
+<span class="nc" id="L321">					textFalt.setText(&quot;&quot;);</span>
+				}
+
+<span class="nc" id="L324">				senasteRaknesatt = &quot;-&quot;;</span>
+<span class="nc" id="L325">				foregaendeRaknesatt = &quot;-&quot;;</span>
+<span class="nc" id="L326">			}</span>
+		});
+<span class="fc" id="L328">		buttonMinus.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L329">		buttonMinus.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L330">		buttonMinus.setBounds(229, 196, 60, 50);</span>
+<span class="fc" id="L331">		frmMathiasKalkylator.getContentPane().add(buttonMinus);</span>
+
+		//*************************************************************************************
+		//*  Raknesatt *
+		//*************************************************************************************
+<span class="fc" id="L336">		JButton buttonGanger = new JButton(&quot;*&quot;);</span>
+<span class="fc" id="L337">		buttonGanger.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L340">				berakning();</span>
+<span class="nc bnc" id="L341" title="All 2 branches missed.">				if (!textFalt.getText().equalsIgnoreCase(&quot;Syntax Error&quot;)) {</span>
+<span class="nc" id="L342">					textFalt.setText(&quot;&quot;);</span>
+				}
+
+<span class="nc" id="L345">				senasteRaknesatt = &quot;*&quot;;</span>
+<span class="nc" id="L346">				foregaendeRaknesatt = &quot;*&quot;;</span>
+<span class="nc" id="L347">			}</span>
+		});
+<span class="fc" id="L349">		buttonGanger.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L350">		buttonGanger.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L351">		buttonGanger.setBounds(226, 259, 60, 50);</span>
+<span class="fc" id="L352">		frmMathiasKalkylator.getContentPane().add(buttonGanger);</span>
+
+		//*************************************************************************************
+		//*  Raknesatt /
+		//*************************************************************************************
+<span class="fc" id="L357">		JButton buttonDelat = new JButton(&quot;/&quot;);</span>
+<span class="fc" id="L358">		buttonDelat.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L361">				berakning();</span>
+<span class="nc bnc" id="L362" title="All 2 branches missed.">				if (!textFalt.getText().equalsIgnoreCase(&quot;Syntax Error&quot;)) {</span>
+<span class="nc" id="L363">					textFalt.setText(&quot;&quot;);</span>
+				}
+
+<span class="nc" id="L366">				senasteRaknesatt = &quot;/&quot;;</span>
+<span class="nc" id="L367">				foregaendeRaknesatt = &quot;/&quot;;</span>
+<span class="nc" id="L368">			}</span>
+		});
+<span class="fc" id="L370">		buttonDelat.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L371">		buttonDelat.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L372">		buttonDelat.setBounds(229, 70, 60, 50);</span>
+<span class="fc" id="L373">		frmMathiasKalkylator.getContentPane().add(buttonDelat);</span>
+
+
+		//*************************************************************************************
+		//*  Backspace
+		//*************************************************************************************
+<span class="fc" id="L379">		JButton buttonBackspace = new JButton(&quot;\uF0E7&quot;);  //backspace</span>
+<span class="fc" id="L380">		buttonBackspace.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L383">				String backspace = null;</span>
+
+<span class="nc bnc" id="L385" title="All 2 branches missed.">				if(textFalt.getText().length() &gt; 0){</span>
+<span class="nc" id="L386">					StringBuilder strb = new StringBuilder(textFalt.getText());</span>
+<span class="nc" id="L387">					strb.deleteCharAt(textFalt.getText().length()-1);</span>
+<span class="nc" id="L388">					backspace = strb.toString();</span>
+<span class="nc" id="L389">					textFalt.setText(backspace);	</span>
+				}
+<span class="nc" id="L391">			}</span>
+		});
+<span class="fc" id="L393">		buttonBackspace.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L394">		buttonBackspace.setFont(new Font(&quot;Wingdings&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L395">		buttonBackspace.setBounds(12, 70, 60, 50);</span>
+<span class="fc" id="L396">		frmMathiasKalkylator.getContentPane().add(buttonBackspace);</span>
+
+		//*************************************************************************************
+		//*  Punkt
+		//*************************************************************************************
+<span class="fc" id="L401">		JButton buttonPunkt = new JButton(&quot;.&quot;);</span>
+<span class="fc" id="L402">		buttonPunkt.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L405">				inmatatTal = textFalt.getText() + buttonPunkt.getText();</span>
+<span class="nc" id="L406">				textFalt.setText(inmatatTal );</span>
+<span class="nc" id="L407">			}</span>
+		});
+<span class="fc" id="L409">		buttonPunkt.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L410">		buttonPunkt.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L411">		buttonPunkt.setBounds(82, 322, 60, 50);</span>
+<span class="fc" id="L412">		frmMathiasKalkylator.getContentPane().add(buttonPunkt);</span>
+
+		//*************************************************************************************
+		//*  PlusMinus +-
+		//*************************************************************************************
+<span class="fc" id="L417">		JButton buttonPlusMinus = new JButton(&quot;+-&quot;);</span>
+<span class="fc" id="L418">		buttonPlusMinus.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+				double plusminus;
+				try {
+<span class="nc" id="L423">					plusminus = Double.parseDouble(String.valueOf(textFalt.getText()));</span>
+<span class="nc" id="L424">					plusminus = plusminus * (-1);</span>
+<span class="nc" id="L425">					textFalt.setText(String.valueOf(plusminus));</span>
+<span class="nc" id="L426">					senasteSiffra = plusminus;</span>
+<span class="nc" id="L427">				} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L428">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L429">				}</span>
+
+<span class="nc" id="L431">			}</span>
+		});
+<span class="fc" id="L433">		buttonPlusMinus.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L434">		buttonPlusMinus.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L435">		buttonPlusMinus.setBounds(154, 322, 60, 50);</span>
+<span class="fc" id="L436">		frmMathiasKalkylator.getContentPane().add(buttonPlusMinus);</span>
+
+
+		//*************************************************************************************
+		//*  Clear
+		//*************************************************************************************
+<span class="fc" id="L442">		JButton buttonC = new JButton(&quot;C&quot;);</span>
+<span class="fc" id="L443">		buttonC.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+
+<span class="nc" id="L447">				summa = 0;</span>
+<span class="nc" id="L448">				textFalt.setText(null);</span>
+<span class="nc" id="L449">				senasteRaknesatt = null;</span>
+<span class="nc" id="L450">				foregaendeRaknesatt = null;</span>
+<span class="nc" id="L451">				senasteSiffra = 0;</span>
+<span class="nc" id="L452">			}</span>
+		});
+<span class="fc" id="L454">		buttonC.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L455">		buttonC.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L456">		buttonC.setBounds(85, 70, 60, 50);</span>
+<span class="fc" id="L457">		frmMathiasKalkylator.getContentPane().add(buttonC);</span>
+
+		//*************************************************************************************
+		//*  Modulus
+		//*************************************************************************************
+<span class="fc" id="L462">		JButton buttonModulus = new JButton(&quot;Mod&quot;);</span>
+<span class="fc" id="L463">		buttonModulus.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L466">				textFalt.setText(&quot;&quot;);</span>
+<span class="nc" id="L467">				senasteRaknesatt = &quot;%&quot;;</span>
+<span class="nc" id="L468">			}</span>
+		});
+<span class="fc" id="L470">		buttonModulus.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L471">		buttonModulus.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L472">		buttonModulus.setBounds(157, 70, 60, 50);</span>
+<span class="fc" id="L473">		frmMathiasKalkylator.getContentPane().add(buttonModulus);</span>
+
+		//*************************************************************************************
+		//*  Roten Ur
+		//*************************************************************************************
+<span class="fc" id="L478">		JButton buttonSqrt = new JButton(&quot;\u221A&quot;);</span>
+<span class="fc" id="L479">		buttonSqrt.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L482">				summa = rotenUr(senasteSiffra);</span>
+<span class="nc" id="L483">				textFalt.setText(textFalt.getText() + &quot;\u221A&quot;);   </span>
+<span class="nc" id="L484">				senasteRaknesatt = &quot;sqrt&quot;;</span>
+<span class="nc" id="L485">				foregaendeRaknesatt = &quot;sqrt&quot;;</span>
+<span class="nc" id="L486">			}</span>
+		});
+<span class="fc" id="L488">		buttonSqrt.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L489">		buttonSqrt.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="fc" id="L490">		buttonSqrt.setBounds(301, 70, 65, 50);</span>
+<span class="fc" id="L491">		frmMathiasKalkylator.getContentPane().add(buttonSqrt);</span>
+
+		//*************************************************************************************
+		//*  Upphojt med 2
+		//*************************************************************************************
+<span class="fc" id="L496">		JButton buttonX2 = new JButton(&quot;x2&quot;);</span>
+<span class="fc" id="L497">		buttonX2.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L500">				summa = upphojtTill2(summa, senasteSiffra);</span>
+<span class="nc" id="L501">				textFalt.setText(textFalt.getText() + &quot;^2&quot;);   </span>
+<span class="nc" id="L502">				senasteRaknesatt = &quot;x2&quot;;</span>
+<span class="nc" id="L503">				foregaendeRaknesatt = &quot;x2&quot;;</span>
+
+
+<span class="nc" id="L506">			}</span>
+		});
+<span class="fc" id="L508">		buttonX2.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L509">		buttonX2.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="fc" id="L510">		buttonX2.setBounds(301, 133, 65, 50);</span>
+<span class="fc" id="L511">		frmMathiasKalkylator.getContentPane().add(buttonX2);</span>
+
+		//*************************************************************************************
+		//*  Upphojt med 3
+		//*************************************************************************************
+<span class="fc" id="L516">		JButton buttonX3 = new JButton(&quot;x3&quot;);</span>
+<span class="fc" id="L517">		buttonX3.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L519">				summa = upphojtTill3(summa, senasteSiffra);</span>
+				//textFalt.setText(&quot;&quot;);
+<span class="nc" id="L521">				textFalt.setText(textFalt.getText() + &quot;^3&quot;);</span>
+<span class="nc" id="L522">				senasteRaknesatt = &quot;x3&quot;;</span>
+<span class="nc" id="L523">				foregaendeRaknesatt = &quot;x3&quot;;</span>
+<span class="nc" id="L524">			}</span>
+		});
+<span class="fc" id="L526">		buttonX3.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L527">		buttonX3.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="fc" id="L528">		buttonX3.setBounds(301, 196, 65, 50);</span>
+<span class="fc" id="L529">		frmMathiasKalkylator.getContentPane().add(buttonX3);</span>
+
+		//*************************************************************************************
+		//*  Ett Delat med x
+		//*************************************************************************************
+<span class="fc" id="L534">		JButton button1delatMedX = new JButton(&quot;1/x&quot;);</span>
+<span class="fc" id="L535">		button1delatMedX.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L537">				summa = ettDelatMedX(summa, senasteSiffra);</span>
+<span class="nc" id="L538">				textFalt.setText(&quot;&quot;);</span>
+<span class="nc" id="L539">			}</span>
+		});
+<span class="fc" id="L541">		button1delatMedX.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L542">		button1delatMedX.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="fc" id="L543">		button1delatMedX.setBounds(298, 259, 65, 50);</span>
+<span class="fc" id="L544">		frmMathiasKalkylator.getContentPane().add(button1delatMedX);</span>
+
+		//*************************************************************************************
+		//*  X upphojt med x
+		//*************************************************************************************
+<span class="fc" id="L549">		JButton buttonXx = new JButton(&quot;X^x&quot;);</span>
+<span class="fc" id="L550">		buttonXx.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L553">				textFalt.setText(&quot;&quot;);</span>
+<span class="nc" id="L554">				senasteRaknesatt = &quot;X^x&quot;;</span>
+<span class="nc" id="L555">			}</span>
+		});
+<span class="fc" id="L557">		buttonXx.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L558">		buttonXx.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));		</span>
+<span class="fc" id="L559">		buttonXx.setBounds(298, 322, 65, 50);</span>
+<span class="fc" id="L560">		frmMathiasKalkylator.getContentPane().add(buttonXx);</span>
+
+
+		//*************************************************************************************
+		//*  Likamed =
+		//*************************************************************************************
+<span class="fc" id="L566">		JButton buttonSumma = new JButton(&quot;=&quot;);</span>
+<span class="fc" id="L567">		buttonSumma.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+				String slutsumma;
+
+				try {
+<span class="nc bnc" id="L573" title="All 2 branches missed.">					if (foregaendeRaknesatt == &quot;+&quot;){ </span>
+<span class="nc bnc" id="L574" title="All 2 branches missed.">						if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L575">							summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+						}
+<span class="nc bnc" id="L577" title="All 2 branches missed.">						else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L578">							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+						}
+						else {							 
+<span class="nc" id="L581">							summa = addition(summa, Double.parseDouble(textFalt.getText()));</span>
+						}						
+					}
+<span class="nc bnc" id="L584" title="All 2 branches missed.">					else if (foregaendeRaknesatt == &quot;-&quot;){</span>
+<span class="nc bnc" id="L585" title="All 2 branches missed.">						if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L586">							summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+						}
+<span class="nc bnc" id="L588" title="All 2 branches missed.">						else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L589">							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+						}
+						else {
+<span class="nc" id="L592">							summa = subtraktion(summa, Double.parseDouble(textFalt.getText()));</span>
+						}
+					} 
+<span class="nc bnc" id="L595" title="All 2 branches missed.">					else if (foregaendeRaknesatt == &quot;*&quot;){</span>
+<span class="nc bnc" id="L596" title="All 2 branches missed.">						if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L597">							summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+						}
+<span class="nc bnc" id="L599" title="All 2 branches missed.">						else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L600">							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+						}
+						else {
+<span class="nc" id="L603">							summa = multiplikation(summa, Double.parseDouble(textFalt.getText()));</span>
+						}
+					} 
+<span class="nc bnc" id="L606" title="All 2 branches missed.">					else if (foregaendeRaknesatt == &quot;/&quot;){</span>
+<span class="nc bnc" id="L607" title="All 2 branches missed.">						if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L608">							summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+						}
+<span class="nc bnc" id="L610" title="All 2 branches missed.">						else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L611">							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+						}
+						else {
+<span class="nc" id="L614">							summa = division(summa, Double.parseDouble(textFalt.getText()));</span>
+						}
+					} 
+
+					// Om senaste raknesattet ar % eller X^x, och ingenting finns i foregaende raknesatt
+					// behover vi gora berakningen av % och X^x har.
+<span class="nc bnc" id="L620" title="All 2 branches missed.">					if (foregaendeRaknesatt == null) {</span>
+<span class="nc bnc" id="L621" title="All 2 branches missed.">						if (senasteRaknesatt==&quot;%&quot;) {</span>
+<span class="nc" id="L622">							summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+						}
+<span class="nc bnc" id="L624" title="All 2 branches missed.">						else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L625">							summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+						}
+					}
+
+
+<span class="nc" id="L630">					slutsumma = String.format(Locale.US, &quot;%.2f&quot;, summa);</span>
+<span class="nc" id="L631">					textFalt.setText(slutsumma);</span>
+<span class="nc" id="L632">					senasteRaknesatt = &quot;=&quot;;</span>
+<span class="nc" id="L633">				} catch (Exception e1) {</span>
+<span class="nc" id="L634">					textFalt.setText(&quot;Syntax Error&quot;);</span>
+
+<span class="nc" id="L636">				}									</span>
+<span class="nc" id="L637">			}</span>
+		});
+<span class="fc" id="L639">		buttonSumma.setBackground(Color.GREEN);</span>
+<span class="fc" id="L640">		buttonSumma.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L641">		buttonSumma.setBounds(226, 322, 60, 50);</span>
+<span class="fc" id="L642">		frmMathiasKalkylator.getContentPane().add(buttonSumma);	</span>
+<span class="fc" id="L643">	}</span>
+
+	/**
+	 * Metoden adderar tva tal   t.ex 3 + 4
+	 * @param double summa
+	 * @param double siffra2
+	 * @return double resultat
+	 */
+	@Override
+	//*************************************************************************************
+	//*  Addition
+	//*************************************************************************************
+	public double addition(double summa, double siffra2) throws Exception {
+<span class="fc" id="L656">		resultat = summa + siffra2;</span>
+<span class="fc" id="L657">		return resultat;</span>
+	}
+
+	/**
+	 * Metoden subtraherar tva tal  t.ex 3 - 4
+	 * 
+	 * @param double summa
+	 * @param double siffra2
+	 * @return double resultat
+	 */
+	@Override
+	//*************************************************************************************
+	//*  Subtraktion
+	//*************************************************************************************
+	public double subtraktion(double summa, double siffra2) throws Exception {
+<span class="fc" id="L672">		resultat = summa - siffra2;</span>
+<span class="fc" id="L673">		return resultat;</span>
+	}
+
+	/**
+	 * Metoden multiplicerar tva tal t.ex 3 * 4 
+	 * 
+	 * @param double summa
+	 * @param double siffra2
+	 * @return double resultat
+	 */
+	@Override
+	//*************************************************************************************
+	//*  Multiplikation
+	//*************************************************************************************
+	public double multiplikation(double summa, double siffra2) throws Exception{
+<span class="fc" id="L688">		resultat = summa * siffra2;</span>
+<span class="fc" id="L689">		return resultat;</span>
+	}
+
+	/**
+	 * Metoden dividerar tva tal  t.ex 9 / 2
+	 * 
+	 * @param double summa
+	 * @param double siffra2
+	 * @return double resultat
+	 */
+	@Override
+	//*************************************************************************************
+	//*  Division
+	//*************************************************************************************
+	public double division(double summa, double siffra2)throws Exception {
+<span class="fc" id="L704">		resultat = summa / siffra2;</span>
+<span class="fc" id="L705">		return resultat;</span>
+	}
+
+	/**
+	 * Metoden anvander modulus och skriver ut &quot;rest&quot; som blir kvar t.ex. 7 % 4 = 3 (3 blir da resten)
+	 * @param double siffra1
+	 * @param double siffra2
+	 * @return double resultat
+	 */
+	@Override
+	//*************************************************************************************
+	//*  Modulus
+	//*************************************************************************************
+	public double modulus(double siffra1,double siffra2) {
+
+<span class="pc bpc" id="L720" title="1 of 2 branches missed.">		if (foregaendeRaknesatt == &quot;+&quot;) {</span>
+<span class="nc" id="L721">			resultat = summa + (siffra1 % siffra2);</span>
+		}
+<span class="pc bpc" id="L723" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;-&quot;) {</span>
+<span class="nc" id="L724">			resultat = summa - (siffra1 % siffra2);</span>
+		}
+<span class="pc bpc" id="L726" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;*&quot;) {</span>
+<span class="nc" id="L727">			resultat = summa * (siffra1 % siffra2);</span>
+		}
+<span class="pc bpc" id="L729" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;/&quot;) {</span>
+<span class="nc" id="L730">			resultat = summa / (siffra1 % siffra2);</span>
+		}
+		else {
+<span class="fc" id="L733">			resultat = siffra1 % siffra2;</span>
+		}
+<span class="fc" id="L735">		foregaendeRaknesatt = &quot;%&quot;;</span>
+<span class="fc" id="L736">		return resultat;</span>
+	}
+
+	/**
+	 * Metoden beraknar squareRoot(roten ur) av ett tal
+	 * @param double senasteSiffra
+	 * @return double resultat 
+	 */
+	@Override
+	//*************************************************************************************
+	//*  Roten ur / SquareRoot
+	//*************************************************************************************
+	public double rotenUr(double senasteSiffra) {
+
+<span class="pc bpc" id="L750" title="1 of 2 branches missed.">		if (foregaendeRaknesatt == &quot;+&quot;) {</span>
+<span class="nc" id="L751">			resultat = summa + Math.sqrt(senasteSiffra);</span>
+		}
+<span class="pc bpc" id="L753" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;-&quot;) {</span>
+<span class="nc" id="L754">			resultat = summa - Math.sqrt(senasteSiffra);</span>
+		}
+<span class="pc bpc" id="L756" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;*&quot;) {</span>
+<span class="nc" id="L757">			resultat = summa * Math.sqrt(senasteSiffra);</span>
+		}
+<span class="pc bpc" id="L759" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;/&quot;) {</span>
+<span class="nc" id="L760">			resultat = summa / Math.sqrt(senasteSiffra);</span>
+		}
+		else {
+<span class="fc" id="L763">			resultat = Math.sqrt(senasteSiffra);</span>
+		}
+<span class="fc" id="L765">		foregaendeRaknesatt = &quot;sqrt&quot;;</span>
+<span class="fc" id="L766">		return resultat;</span>
+	}
+
+	/**
+	 * Metoden far in ett tal och multiplicerar talet med sig sjalvt 1 gang. t.ex. (inmatat tal) = 9 
+	 * da far man tillbaka 9 * 9,  alltsa multiplicerat med sig sjalv 1 gang
+	 * 
+	 * @param double summa
+	 * @param double senasteSiffra
+	 * @return double resultat
+	 */
+	@Override
+	//*************************************************************************************
+	//*  x upphojt i 2 || x^2
+	//*************************************************************************************
+	public double upphojtTill2(double summa, double senasteSiffra) {
+<span class="pc bpc" id="L782" title="1 of 2 branches missed.">		if (foregaendeRaknesatt == &quot;+&quot;) {</span>
+<span class="nc" id="L783">			resultat = summa + (senasteSiffra*senasteSiffra);                   </span>
+		}
+<span class="pc bpc" id="L785" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;-&quot;) {</span>
+<span class="nc" id="L786">			resultat = summa  - (senasteSiffra*senasteSiffra);</span>
+		}
+<span class="pc bpc" id="L788" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;*&quot;) {</span>
+<span class="nc" id="L789">			resultat = summa * (senasteSiffra*senasteSiffra);</span>
+		}
+<span class="pc bpc" id="L791" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;/&quot;) {</span>
+<span class="nc" id="L792">			resultat = summa / (senasteSiffra*senasteSiffra);</span>
+		}
+		else {
+<span class="fc" id="L795">			resultat = senasteSiffra*senasteSiffra;</span>
+		}
+<span class="fc" id="L797">		foregaendeRaknesatt = &quot;x2&quot;;                                               </span>
+<span class="fc" id="L798">		return resultat;</span>
+	}
+
+	/**
+	 * Metoden far in ett tal och multiplicerar talet med sig sjalvt 2 ganger. t.ex. (inmatat tal) = 9 
+	 * da far man tillbaka 9 * 9 * 9,  alltsa multiplicerat med sig sjalv 2 ganger
+	 * 
+	 * @param double summa
+	 * @param double senasteSiffra
+	 * @return double resultat
+	 */
+	@Override
+	//*************************************************************************************
+	//*   x upphojt i 3 || x^3
+	//*************************************************************************************
+	public double upphojtTill3(double summa, double senasteSiffra) {
+<span class="pc bpc" id="L814" title="1 of 2 branches missed.">		if (foregaendeRaknesatt == &quot;+&quot;) {</span>
+<span class="nc" id="L815">			resultat = summa + (senasteSiffra*senasteSiffra*senasteSiffra);</span>
+		}
+<span class="pc bpc" id="L817" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;-&quot;) {</span>
+<span class="nc" id="L818">			resultat = summa - (senasteSiffra*senasteSiffra*senasteSiffra);</span>
+		}
+<span class="pc bpc" id="L820" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;*&quot;) {</span>
+<span class="nc" id="L821">			resultat = summa * (senasteSiffra*senasteSiffra*senasteSiffra);</span>
+		}
+<span class="pc bpc" id="L823" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;/&quot;) {</span>
+<span class="nc" id="L824">			resultat = summa / (senasteSiffra*senasteSiffra*senasteSiffra);</span>
+		}
+		else {
+<span class="fc" id="L827">			resultat = senasteSiffra*senasteSiffra*senasteSiffra;</span>
+		}
+<span class="fc" id="L829">		foregaendeRaknesatt = &quot;x2&quot;;</span>
+<span class="fc" id="L830">		return resultat;</span>
+	}
+
+	/**
+	 * Metoden far in ett tal t.ex. 5 och sedan tar den in andra talet t.ex. 2. Da far vi 5^2
+	 * 
+	 * @param double siffra1
+	 * @param double siffra2
+	 * @return double resultat
+	 * 
+	 */
+	@Override
+	//*************************************************************************************
+	//*   x upphojt i x || x^x
+	//*************************************************************************************
+	public double xUpphojtMedX(double siffra1, double siffra2) {
+
+<span class="pc bpc" id="L847" title="1 of 2 branches missed.">		if (foregaendeRaknesatt == &quot;+&quot;) {</span>
+<span class="nc" id="L848">			resultat = summa + (Math.pow(siffra1, siffra2));</span>
+		}
+<span class="pc bpc" id="L850" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;-&quot;) {</span>
+<span class="nc" id="L851">			resultat = summa - (Math.pow(siffra1, siffra2));</span>
+		}
+<span class="pc bpc" id="L853" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;*&quot;) {</span>
+<span class="nc" id="L854">			resultat = summa * (Math.pow(siffra1, siffra2));</span>
+		}
+<span class="pc bpc" id="L856" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;/&quot;) {</span>
+<span class="nc" id="L857">			resultat = summa / (Math.pow(siffra1, siffra2));</span>
+		}
+		else {
+<span class="fc" id="L860">			resultat = Math.pow(siffra1, siffra2);</span>
+		}
+<span class="fc" id="L862">		foregaendeRaknesatt = &quot;X^x&quot;;</span>
+<span class="fc" id="L863">		return resultat;</span>
+	}
+
+
+	/**
+	 * Metoden tar in ett tal. t.ex 8 och da gor den 1/8 och skriver ut svaret
+	 * 
+	 * @param double summa
+	 * @param double siffra2
+	 * @return double resultat
+	 */
+	@Override
+	//*************************************************************************************
+	//*  1 / x
+	//*************************************************************************************
+	public double ettDelatMedX(double summa, double siffra2) {
+
+<span class="pc bpc" id="L880" title="1 of 2 branches missed.">		if (foregaendeRaknesatt == &quot;+&quot;) {</span>
+<span class="nc" id="L881">			resultat = summa + (1/(double)siffra2);                    </span>
+		}
+<span class="pc bpc" id="L883" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;-&quot;) {</span>
+<span class="nc" id="L884">			resultat = summa  - (1/(double)siffra2);</span>
+		}
+<span class="pc bpc" id="L886" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;*&quot;) {</span>
+<span class="nc" id="L887">			resultat = summa * (1/(double)siffra2);</span>
+		}
+<span class="pc bpc" id="L889" title="1 of 2 branches missed.">		else if (foregaendeRaknesatt == &quot;/&quot;) {</span>
+<span class="nc" id="L890">			resultat = summa / (1/(double)siffra2);</span>
+		}
+		else {
+<span class="fc" id="L893">			resultat = 1/(double)siffra2;</span>
+		}
+<span class="fc" id="L895">		foregaendeRaknesatt = &quot;1/x&quot;;                                               </span>
+<span class="fc" id="L896">		return resultat;</span>
+	}
+
+
+	/**
+	 * Denna metod innehaller berakning for de flesta mojliga varianter av utrakningar
+	 * Anropas vid +, -, *, / knapparna
+	 * 
+	 */
+	//*************************************************************************************
+	//*   Berakna metod for alla 
+	//*************************************************************************************
+	private void berakning() {
+		try {
+
+<span class="nc bnc" id="L911" title="All 2 branches missed.">			if (senasteRaknesatt == &quot;=&quot;) {</span>
+<span class="nc" id="L912">				textFalt.setText(&quot;Syntax Error&quot;);</span>
+<span class="nc" id="L913">				return;</span>
+			}
+			// Addition
+<span class="nc bnc" id="L916" title="All 2 branches missed.">			if  (foregaendeRaknesatt == &quot;+&quot;) {</span>
+<span class="nc bnc" id="L917" title="All 2 branches missed.">				if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L918">					summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+				}
+<span class="nc bnc" id="L920" title="All 2 branches missed.">				else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L921">					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+				}
+				else{
+<span class="nc" id="L924">					summa = addition(summa, Double.parseDouble(textFalt.getText()));</span>
+				}
+
+				// Subtraktion
+<span class="nc bnc" id="L928" title="All 2 branches missed.">			}else if (foregaendeRaknesatt == &quot;-&quot;) {</span>
+<span class="nc bnc" id="L929" title="All 2 branches missed.">				if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L930">					summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+				}
+<span class="nc bnc" id="L932" title="All 2 branches missed.">				else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L933">					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+				}
+				else{
+<span class="nc" id="L936">					summa = subtraktion(summa, Double.parseDouble(textFalt.getText()));</span>
+				}
+			}
+
+			// Multiplikation
+<span class="nc bnc" id="L941" title="All 2 branches missed.">			else if (foregaendeRaknesatt == &quot;*&quot;) {</span>
+<span class="nc bnc" id="L942" title="All 2 branches missed.">				if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L943">					summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+				}
+<span class="nc bnc" id="L945" title="All 2 branches missed.">				else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L946">					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+				}
+				else{
+<span class="nc" id="L949">					summa = multiplikation(summa, Double.parseDouble(textFalt.getText()));</span>
+				}
+			}
+			// Division			
+<span class="nc bnc" id="L953" title="All 2 branches missed.">			else if (foregaendeRaknesatt == &quot;/&quot;) {</span>
+<span class="nc bnc" id="L954" title="All 2 branches missed.">				if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L955">					summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+				}
+<span class="nc bnc" id="L957" title="All 2 branches missed.">				else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L958">					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+				}
+				else{
+<span class="nc" id="L961">					summa = division(summa, Double.parseDouble(textFalt.getText()));</span>
+				}
+			}
+
+			// Modulus	
+<span class="nc bnc" id="L966" title="All 2 branches missed.">			else if (senasteRaknesatt == &quot;%&quot;) {</span>
+<span class="nc" id="L967">				summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+			}
+
+			//x2	
+<span class="nc bnc" id="L971" title="All 2 branches missed.">			else if (foregaendeRaknesatt == &quot;x2&quot;) {   // X^2 ar redan beraknat. Tom falt infor nasta berakning</span>
+<span class="nc" id="L972">				textFalt.setText(&quot;&quot;);</span>
+			}
+
+			// x3	
+<span class="nc bnc" id="L976" title="All 2 branches missed.">			else if (foregaendeRaknesatt == &quot;x3&quot;) {   // X^3 ar redan beraknat. Tom falt infor nasta berakning</span>
+<span class="nc" id="L977">				textFalt.setText(&quot;&quot;);</span>
+
+			}
+
+			// sqrt	
+<span class="nc bnc" id="L982" title="All 2 branches missed.">			else if (foregaendeRaknesatt == &quot;sqrt&quot;) { // sqrt ar redan beraknat. Tom falt infor nasta berakning</span>
+<span class="nc" id="L983">				textFalt.setText(&quot;&quot;);     			 </span>
+
+			}
+
+			// 1/x	
+<span class="nc bnc" id="L988" title="All 2 branches missed.">			else if (foregaendeRaknesatt == &quot;1/x&quot;) { // 1/x ar redan beraknat. Tom falt infor nasta berakning</span>
+<span class="nc" id="L989">				textFalt.setText(&quot;&quot;);                 </span>
+
+			}
+
+			// X^x	
+<span class="nc bnc" id="L994" title="All 2 branches missed.">			else if (foregaendeRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L995">				summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+			}
+
+			// Om senaste raknesattet ar % eller X^x, och ingenting finns i foregaende raknesatt
+			// behover vi gora berakningen av % och X^x har.
+<span class="nc bnc" id="L1000" title="All 2 branches missed.">			else if (foregaendeRaknesatt == null) {</span>
+<span class="nc bnc" id="L1001" title="All 2 branches missed.">				if (senasteRaknesatt==&quot;%&quot;) {</span>
+<span class="nc" id="L1002">					summa = modulus(foregaendeSiffra, senasteSiffra);</span>
+				}
+<span class="nc bnc" id="L1004" title="All 2 branches missed.">				else if (senasteRaknesatt == &quot;X^x&quot;) {</span>
+<span class="nc" id="L1005">					summa = xUpphojtMedX(foregaendeSiffra, senasteSiffra);</span>
+				}else{
+<span class="nc" id="L1007">					summa = Double.parseDouble(textFalt.getText());</span>
+				}
+			}else {
+<span class="nc" id="L1010">				summa = Double.parseDouble(textFalt.getText());</span>
+			}
+
+<span class="nc" id="L1013">		} catch (Exception e1) {</span>
+
+<span class="nc" id="L1015">			textFalt.setText(&quot;Syntax Error&quot;);</span>
+
+<span class="nc" id="L1017">			foregaendeRaknesatt = null;</span>
+<span class="nc" id="L1018">			summa = 0;</span>
+
+<span class="nc" id="L1020">		}</span>
+<span class="nc" id="L1021">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
